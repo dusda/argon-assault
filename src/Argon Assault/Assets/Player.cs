@@ -4,12 +4,17 @@ using UnityStandardAssets.CrossPlatformInput;
 public class Player : MonoBehaviour
 {
     [SerializeField, Tooltip("In m/sec")] float xSpeed = 4f;
-    [SerializeField, Tooltip("In m")] float xRange = 2.58f;
+    [SerializeField, Tooltip("In m")] float xRange = 3f;
     [SerializeField, Tooltip("In m/sec")] float ySpeed = 4f;
-    [SerializeField, Tooltip("In m")] float yRange = 2f;
+    [SerializeField, Tooltip("In m")] float yRange = 3f;
 
     [SerializeField] float positionPitchFactor = -5f;
     [SerializeField] float controlPitchFactor = -15f;
+
+    [SerializeField] float positionYawFactor = 7f;
+    [SerializeField] float controlYawFactor = 15f;
+
+    [SerializeField] float controlRollFactor = -15f;
 
     float xThrow, yThrow;
 
@@ -24,10 +29,16 @@ public class Player : MonoBehaviour
         float pitchFromPosition = transform.localPosition.y * positionPitchFactor;
         float pitchFromControlThrow = yThrow * controlPitchFactor;
         float pitch = pitchFromPosition + pitchFromControlThrow;
-        float yaw = 0f;
-        float roll = 0f;
 
-        print("pfp: " + pitchFromPosition + ", pfct: " + pitchFromControlThrow);
+        float yawFromPosition = transform.localPosition.x * positionYawFactor;
+        float yawFromControlThrow = xThrow * controlYawFactor;
+        float yaw = yawFromPosition + yawFromControlThrow;
+
+        float roll = xThrow * controlRollFactor;
+
+        print("pitch: " + pitchFromPosition + ", " + pitchFromControlThrow + " " +
+            "yaw: " + yawFromPosition + ", " + yawFromControlThrow + " " + 
+            "roll: " + controlRollFactor);
 
         transform.localRotation = Quaternion.Euler(pitch, yaw, roll);
     }
