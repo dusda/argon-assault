@@ -5,9 +5,14 @@ public class Splash : MonoBehaviour
 {
     AudioSource _music;
 
-    void Start()
+    void Awake()
     {
         _music = GetComponent<AudioSource>();
+        DontDestroyOnLoad(_music);
+    }
+
+    void Start()
+    {
         Invoke("LoadLevel", 1f);
     }
 
