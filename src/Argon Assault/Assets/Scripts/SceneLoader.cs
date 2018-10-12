@@ -1,16 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Splash : MonoBehaviour
+public class SceneLoader : MonoBehaviour
 {
-    AudioSource _music;
-
-    void Awake()
-    {
-        _music = GetComponent<AudioSource>();
-        DontDestroyOnLoad(_music);
-    }
-
     void Start()
     {
         Invoke("LoadLevel", 1f);
