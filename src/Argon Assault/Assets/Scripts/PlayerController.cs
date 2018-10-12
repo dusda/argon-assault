@@ -1,27 +1,35 @@
 ﻿using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-public class Player : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    [SerializeField, Tooltip("In m/sec")] float xSpeed = 4f;
+    //todo workout why sometimes slow on first play of scene.
+
+    [Header("General")]
+    [SerializeField, Tooltip("In m/sec")] float controlSpeed = 4f;
     [SerializeField, Tooltip("In m")] float xRange = 3f;
     [SerializeField, Tooltip("In m/sec")] float ySpeed = 4f;
     [SerializeField, Tooltip("In m")] float yRange = 3f;
 
+    [Header("Screen Position")]
     [SerializeField] float positionPitchFactor = -5f;
-    [SerializeField] float controlPitchFactor = -15f;
-
     [SerializeField] float positionYawFactor = 7f;
-    [SerializeField] float controlYawFactor = 15f;
 
+    [Header("Control Throw")]
+    [SerializeField] float controlPitchFactor = -15f;
+    [SerializeField] float controlYawFactor = 15f;
     [SerializeField] float controlRollFactor = -15f;
 
     float xThrow, yThrow;
+    bool controlsEnabled = true;
 
     void Update()
     {
-        Translation();
-        Rotation();
+        if (controlsEnabled)
+        {
+            Translation();
+            Rotation();
+        }
     }
 
     void Rotation()
@@ -46,7 +54,7 @@ public class Player : MonoBehaviour
     void Translation()
     {
         xThrow = CrossPlatformInputManager.GetAxis("Horizontal");
-        float xOffset = xSpeed * xThrow * Time.deltaTime;
+        float xOffset = controlSpeed * xThrow * Time.deltaTime;
         float rawX = transform.localPosition.x + xOffset;
         float x = Mathf.Clamp(rawX, -xRange, xRange);
 
@@ -56,5 +64,10 @@ public class Player : MonoBehaviour
         float y = Mathf.Clamp(rawY, -yRange, yRange);
 
         transform.localPosition = new Vector3(x, y, transform.localPosition.z);
+    }
+
+    void OnPlayerDeath()
+    {
+        controlsEnabled = false;        
     }
 }
