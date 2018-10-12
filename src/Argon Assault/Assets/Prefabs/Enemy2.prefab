@@ -95,3 +95,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deathFx: {fileID: 1495090602698850, guid: 332639991eb44034ea576a9410220279, type: 2}
+  parent: {fileID: 0}
