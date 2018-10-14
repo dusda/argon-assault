@@ -327,6 +327,11 @@ Transform:
   m_Father: {fileID: 2102747377}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &88001468 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1603807437862266, guid: 2275e9cad9dee764bb3605232331479f,
+    type: 2}
+  m_PrefabInternal: {fileID: 118157015}
 --- !u!1 &90034078
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,6 +433,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 583534307}
     m_Modifications:
+    - target: {fileID: 114885241653423260, guid: 2275e9cad9dee764bb3605232331479f,
+        type: 2}
+      propertyPath: guns.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 4155393945390384, guid: 2275e9cad9dee764bb3605232331479f, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -460,9 +470,32 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1676688124619082, guid: 2275e9cad9dee764bb3605232331479f, type: 2}
+      propertyPath: m_Name
+      value: Gun Right
+      objectReference: {fileID: 0}
+    - target: {fileID: 1603807437862266, guid: 2275e9cad9dee764bb3605232331479f, type: 2}
+      propertyPath: m_Name
+      value: Gun Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 114885241653423260, guid: 2275e9cad9dee764bb3605232331479f,
+        type: 2}
+      propertyPath: guns.Array.data[0]
+      value: 
+      objectReference: {fileID: 135312305}
+    - target: {fileID: 114885241653423260, guid: 2275e9cad9dee764bb3605232331479f,
+        type: 2}
+      propertyPath: guns.Array.data[1]
+      value: 
+      objectReference: {fileID: 88001468}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2275e9cad9dee764bb3605232331479f, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &135312305 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1676688124619082, guid: 2275e9cad9dee764bb3605232331479f,
+    type: 2}
+  m_PrefabInternal: {fileID: 118157015}
 --- !u!4 &141028971 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4229924686380948, guid: 8c6e1280e506e3f47a9fa996eaf815d9,

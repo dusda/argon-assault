@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 public class PlayerController : MonoBehaviour
@@ -10,6 +11,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField, Tooltip("In m")] float xRange = 3f;
     [SerializeField, Tooltip("In m/sec")] float ySpeed = 4f;
     [SerializeField, Tooltip("In m")] float yRange = 3f;
+    [SerializeField] GameObject[] guns;
 
     [Header("Screen Position")]
     [SerializeField] float positionPitchFactor = -5f;
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
         {
             Translation();
             Rotation();
+            ProcessFiring();
         }
     }
 
@@ -64,6 +67,14 @@ public class PlayerController : MonoBehaviour
         float y = Mathf.Clamp(rawY, -yRange, yRange);
 
         transform.localPosition = new Vector3(x, y, transform.localPosition.z);
+    }
+
+    void ProcessFiring()
+    {
+        bool firing = CrossPlatformInputManager.GetButton("Fire");
+
+        foreach (var item in guns)
+            item.SetActive(firing);
     }
 
     void OnPlayerDeath()
