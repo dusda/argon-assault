@@ -6,17 +6,15 @@ public class ScoreBoard : MonoBehaviour
     int _score;
     Text _scoreText;
 
-    [SerializeField] int scorePerHit = 12;
-
     void Start()
     {
         _scoreText = GetComponent<Text>();
         _scoreText.text = _score.ToString();
     }
 
-    public void ScoreHit()
+    public void ScoreHit(int score = 10)
     {
-        _score += scorePerHit;
+        _score += score;
         _scoreText.text = _score.ToString();
     }
 }

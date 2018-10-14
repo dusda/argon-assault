@@ -2,9 +2,10 @@
 
 public class SelfDestructor : MonoBehaviour
 {
+    [SerializeField, Tooltip("in seconds")] float lifeTime = 5f;
+
     void Start()
     {
-        //todo allow customization
-        Destroy(gameObject, 5f);
+        Destroy(gameObject, lifeTime);
     }
 }
