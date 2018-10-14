@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 [DisallowMultipleComponent]
 public class Enemy : MonoBehaviour
@@ -7,6 +6,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] GameObject deathFx;
     [SerializeField] Transform parent;
     [SerializeField] int scorePerHit = 10;
+    [SerializeField] int hits = 10;
 
     ScoreBoard _scoreBoard;
 
@@ -24,8 +24,20 @@ public class Enemy : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
-        _scoreBoard.ScoreHit(scorePerHit);
+        ProcessHit();
 
+        if (hits <= 0)
+            Kill();
+    }
+
+    void ProcessHit()
+    {
+        _scoreBoard.ScoreHit(scorePerHit);
+        hits -= 1;
+    }
+
+    void Kill()
+    {
         GameObject fx = Instantiate(deathFx, transform.position, Quaternion.identity);
         fx.transform.parent = parent;
         Destroy(gameObject);
